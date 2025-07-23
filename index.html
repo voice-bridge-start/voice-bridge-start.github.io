@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoiceBridge AI: 인터랙티브 사업계획서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #0052cc;
+            border-bottom-color: #0052cc;
+        }
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .tab-button.active {
+            background-color: #0052cc;
+            color: #ffffff;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            /* [수정됨] left 값을 -10px에서 -50px로 변경하여 아이콘 위치 수정 */
+            left: -50px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #0052cc;
+            border: 3px solid #f8f9fa;
+        }
+        .section-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+            color: #0052cc;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold text-gray-800">VoiceBridge AI</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#market" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">시장 기회</a>
+                <a href="#model" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">사업 모델</a>
+                <a href="#strategy" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">성장 전략</a>
+                <a href="#ethics" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">윤리 및 법률</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#market" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">시장 기회</a>
+            <a href="#model" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">사업 모델</a>
+            <a href="#strategy" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">성장 전략</a>
+            <a href="#ethics" class="block text-center py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">윤리 및 법률</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight mb-4">신뢰할 수 있는 목소리, 윤리적인 AI</h1>
+                <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto">VoiceBridge AI는 창작자와 기업 모두를 위한 가장 신뢰성 높은 AI 음성 데이터 거래 및 중개 플랫폼입니다. 기술의 발전이 창작자의 권리를 보호하며 새로운 수익 창출의 기회가 되도록 만듭니다.</p>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                    <div class="card bg-gray-50 p-6 rounded-lg text-left">
+                        <div class="section-icon mb-4">⚖️</div>
+                        <h3 class="text-xl font-bold mb-2">법적/윤리적 안정성</h3>
+                        <p class="text-gray-600">'이중 동의' 원칙과 블록체인 기반 '출처 증명서'로 기업 고객에게 완벽한 법적 안정성을 제공합니다.</p>
+                    </div>
+                    <div class="card bg-gray-50 p-6 rounded-lg text-left">
+                        <div class="section-icon mb-4">⚙️</div>
+                        <h3 class="text-xl font-bold mb-2">AI 학습 최적화 데이터</h3>
+                        <p class="text-gray-600">전처리가 완료된 고품질 데이터셋을 공급하여 AI 개발자의 시간과 비용을 획기적으로 절감시킵니다.</p>
+                    </div>
+                    <div class="card bg-gray-50 p-6 rounded-lg text-left">
+                        <div class="section-icon mb-4">🤝</div>
+                        <h3 class="text-xl font-bold mb-2">창작자 중심 생태계</h3>
+                        <p class="text-gray-600">지속적인 로열티 수익 모델을 통해 최고 수준의 창작자를 유치하고 동반 성장하는 생태계를 구축합니다.</p>
+                    </div>
+                    <div class="card bg-gray-50 p-6 rounded-lg text-left">
+                        <div class="section-icon mb-4">🎯</div>
+                        <h3 class="text-xl font-bold mb-2">전략적 시장 진입</h3>
+                        <p class="text-gray-600">검증된 AICC 시장에서 시작하여 성공 사례를 바탕으로 고부가가치 시장으로 점진적으로 확장합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="market" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">폭발적으로 성장하는 시장 기회</h2>
+                    <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">AI 음성 시장은 전 세계적으로 연평균 30% 이상의 경이로운 성장률을 기록하고 있습니다. 이는 VoiceBridge AI가 성장할 수 있는 충분한 시장 공간이 존재함을 의미합니다. 이 섹션에서는 시장의 규모와 핵심 수요처를 시각적으로 분석합니다.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="card bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-center mb-4">글로벌 AI 음성 생성 시장 전망 (단위: 억 달러)</h3>
+                        <div class="chart-container">
+                            <canvas id="marketChart"></canvas>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-4 text-center">주요 시장 조사 기관들은 2030년까지 시장이 현재의 4-5배 규모로 성장할 것을 공통적으로 예측하고 있습니다. 차트의 막대를 클릭하거나 마우스를 올려 상세 수치를 확인해보세요.</p>
+                    </div>
+                    <div class="space-y-8">
+                        <div class="card bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-bold mb-2">초기 핵심 타겟: AICC (AI 컨택센터)</h3>
+                            <p class="text-gray-600 mb-2">국내 AICC 시장은 연평균 23.7% 성장하며, SKT, KT 등 명확한 수요 기업이 존재해 초기 매출 확보에 매우 유리합니다.</p>
+                            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                                <p class="font-semibold text-blue-800">핵심 요구사항: 명확성, 일관성, 비즈니스 톤의 음성 데이터</p>
+                            </div>
+                        </div>
+                        <div class="card bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-bold mb-2">중장기 확장 타겟: 미디어 & 엔터테인먼트</h3>
+                            <p class="text-gray-600 mb-2">영화, 게임, 버튜버 등 가장 지배적인 최종 사용 분야로, 고품질 데이터에 대한 프리미엄 시장이 형성되어 있습니다.</p>
+                            <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                                <p class="font-semibold text-green-800">핵심 요구사항: 사실적인 연기, 풍부한 감정 표현</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="model" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">차별화된 비즈니스 모델</h2>
+                    <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">저희는 시장의 빈틈을 공략하는 독자적인 하이브리드 모델을 추구합니다. 이 섹션에서는 우리의 핵심 서비스와 경쟁 환경 속에서 어떻게 독보적인 위치를 차지할 것인지 설명합니다.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                     <div class="card p-6 rounded-lg border border-gray-200">
+                        <div class="section-icon mb-4">💾</div>
+                        <h3 class="text-xl font-bold mb-2">AI-Ready 데이터셋 공급</h3>
+                        <p class="text-gray-600">노이즈 제거, 음량 정규화 등 AI 학습에 최적화된 전처리 과정을 거친 데이터와 메타데이터를 함께 제공하여 개발 효율성을 극대화합니다.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg border border-gray-200">
+                        <div class="section-icon mb-4">🎤</div>
+                        <h3 class="text-xl font-bold mb-2">윤리적 음성 복제 서비스</h3>
+                        <p class="text-gray-600">창작자의 명시적 동의와 지속적인 수익 공유, 사용처 제어권을 보장하는 투명한 음성 복제 서비스를 제공합니다.</p>
+                    </div>
+                    <div class="card p-6 rounded-lg border border-gray-200">
+                        <div class="section-icon mb-4">👔</div>
+                        <h3 class="text-xl font-bold mb-2">'화이트 글러브' 엔터프라이즈</h3>
+                        <p class="text-gray-600">보안, 규제, 맞춤형 계약 등 대기업의 복합적인 요구사항을 만족시키는 고마진의 전담 솔루션을 제공합니다.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-center mb-6">경쟁 환경 및 우리의 포지션</h3>
+                    <div class="max-w-4xl mx-auto bg-gray-50 p-6 rounded-lg">
+                        <div class="mb-4 border-b border-gray-200">
+                            <nav class="-mb-px flex space-x-4" aria-label="Tabs">
+                                <button class="tab-button active whitespace-nowrap py-2 px-4 border-b-2 font-medium text-sm rounded-t-md" data-target="tab-saas">SaaS 제공업체</button>
+                                <button class="tab-button whitespace-nowrap py-2 px-4 border-b-2 font-medium text-sm rounded-t-md" data-target="tab-market">마켓플레이스</button>
+                                <button class="tab-button whitespace-nowrap py-2 px-4 border-b-2 font-medium text-sm rounded-t-md" data-target="tab-creator">수익화 플랫폼</button>
+                            </nav>
+                        </div>
+                        <div id="tab-content">
+                            <div id="tab-saas" class="tab-pane active">
+                                <h4 class="font-bold text-lg">vs. SaaS 제공업체 (예: WellSaid Labs)</h4>
+                                <p class="text-gray-600 mt-2">SaaS 업체들은 고품질 음성과 사용 편의성을 제공하지만, 제한된 음성 라이브러리와 창작자 권리 보호에 대한 이슈가 있습니다.</p>
+                                <p class="mt-3 font-semibold text-blue-700">➡️ 우리의 전략: 다양한 창작자의 목소리를 라이브러리화하고, '지속적인 로열티 모델'로 창작자 권리를 보호하며 더 풍부한 데이터풀을 구축합니다.</p>
+                            </div>
+                            <div id="tab-market" class="tab-pane hidden">
+                                <h4 class="font-bold text-lg">vs. 전통적 마켓플레이스 (예: Voices.com)</h4>
+                                <p class="text-gray-600 mt-2">이들은 방대한 성우 네트워크를 가졌지만, AI 기술 도입과 복잡한 법적 문제 대응에 미흡합니다.</p>
+                                <p class="mt-3 font-semibold text-blue-700">➡️ 우리의 전략: AI 기술 기반의 라이선싱과 수익 공유를 도입하고, '블록체인 기반 출처 증명'으로 법적 신뢰성을 확보합니다.</p>
+                            </div>
+                             <div id="tab-creator" class="tab-pane hidden">
+                                <h4 class="font-bold text-lg">vs. 크리에이터 수익화 플랫폼 (예: ElevenLabs)</h4>
+                                <p class="text-gray-600 mt-2">창작자 친화적 모델이 강점이지만, B2B 기업 고객이 요구하는 높은 수준의 신뢰와 보안을 충족시키기에는 한계가 있습니다.</p>
+                                <p class="mt-3 font-semibold text-blue-700">➡️ 우리의 전략: '화이트 글러브' 서비스와 법적 안정성을 통해 엔터프라이즈 고객의 신뢰를 확보하고, 두 시장의 장점을 모두 취합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategy" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">단계별 성장 전략</h2>
+                    <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">우리는 '닭과 달걀' 문제를 해결하고 지속 가능한 성장을 이루기 위해 명확한 단계별 전략을 가지고 있습니다. 초기 커뮤니티 구축부터 시장 지배력 확보까지, 우리의 성장 로드맵을 소개합니다.</p>
+                </div>
+
+                <div class="relative max-w-2xl mx-auto border-l-2 border-gray-300 pl-10">
+                    <div class="mb-12 relative timeline-item">
+                        <h3 class="text-xl font-bold text-blue-600">1단계 (초기 1년): 기반 구축</h3>
+                        <p class="text-gray-600 mt-2">국내 AICC 시장을 전략적 거점으로 확보하여 안정적인 초기 매출과 고품질 한국어 비즈니스 데이터셋을 구축합니다. '오디션' 모델을 통해 핵심 성우 및 크리에이터 100명 이상을 확보하여 초기 인벤토리를 완성합니다.</p>
+                    </div>
+                    <div class="mb-12 relative timeline-item">
+                        <h3 class="text-xl font-bold text-blue-600">2단계 (2-3년): 시장 확장</h3>
+                        <p class="text-gray-600 mt-2">미디어, 엔터테인먼트, 게임 시장으로 확장합니다. 크리에이터 중심의 수익 공유 모델을 안정화하고, 이를 바탕으로 아시아-태평양(APAC) 시장 진출의 교두보를 마련합니다.</p>
+                    </div>
+                    <div class="relative timeline-item">
+                        <h3 class="text-xl font-bold text-blue-600">3단계 (4년 이후): 글로벌 표준</h3>
+                        <p class="text-gray-600 mt-2">블록체인 기반 '음성 자산 증명' 시스템을 고도화하여, 윤리적이고 법적으로 검증된 AI 음성 데이터 분야의 글로벌 표준 플랫폼으로 자리매김합니다.</p>
+                    </div>
+                </div>
+
+                <div class="mt-16">
+                    <h3 class="text-2xl font-bold text-center mb-6">'닭과 달걀' 문제 해결 전략</h3>
+                    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+                        <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                            <div class="text-5xl mb-4">🎤</div>
+                            <h4 class="text-xl font-bold">1. 공급자 확보: '오디션' 모델</h4>
+                            <p class="text-gray-600 mt-2">콘테스트를 통해 고품질의 독점적 음성 데이터 인벤토리를 구축하고, 초기 핵심 커뮤니티를 형성하여 수요자를 끌어들일 자석을 만듭니다.</p>
+                        </div>
+                        <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                            <div class="text-5xl mb-4">💻</div>
+                            <h4 class="text-xl font-bold">2. 수요자 유치: '개발자 샌드박스'</h4>
+                            <p class="text-gray-600 mt-2">확보된 매력적인 데이터를 개발자들이 무료로 테스트할 수 있는 API 환경을 제공하여, '선체험 후구매'를 통해 자연스러운 고객 전환을 유도합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ethics" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">우리의 약속: 윤리 및 법률</h2>
+                    <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">우리의 가장 강력한 경쟁력은 법적, 윤리적 리스크를 완벽하게 관리하는 능력입니다. 이는 단순한 규제 준수를 넘어, 창작자와 기업 모두에게 신뢰를 제공하는 핵심 가치입니다. 이 섹션은 우리의 원칙을 설명합니다.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="card bg-gray-50 p-8 rounded-lg">
+                        <h3 class="text-xl font-bold mb-3">✔️ '이중 동의' 원칙 의무화</h3>
+                        <p class="text-gray-600">모든 데이터 공급자는 음성 파일 사용에 대한 <strong>저작인접권</strong>과 목소리 자체의 AI 학습/복제에 대한 <strong>인격권</strong>에 대해 별도로, 명시적으로 동의해야 합니다. 이는 업계 최고 수준의 권리 보호 장치입니다.</p>
+                    </div>
+                     <div class="card bg-gray-50 p-8 rounded-lg">
+                        <h3 class="text-xl font-bold mb-3">📜 블록체인 기반 '출처 증명서'</h3>
+                        <p class="text-gray-600">모든 거래에는 동의 내역과 라이선스 조건이 기록된 위변조 불가능한 인증서가 발급됩니다. 기업 고객은 이를 통해 완벽한 법적 안정성을 확보할 수 있습니다.</p>
+                    </div>
+                     <div class="card bg-gray-50 p-8 rounded-lg">
+                        <h3 class="text-xl font-bold mb-3">💰 투명한 보상 및 통제권</h3>
+                        <p class="text-gray-600">창작자는 대시보드를 통해 자신의 목소리 자산이 어떻게 사용되고 수익이 발생하는지 실시간으로 확인하며, 사용처를 직접 제어할 수 있는 완전한 통제권을 가집니다.</p>
+                    </div>
+                     <div class="card bg-gray-50 p-8 rounded-lg">
+                        <h3 class="text-xl font-bold mb-3">🏛️ 윤리 위원회 운영</h3>
+                        <p class="text-gray-600">법률 전문가, 성우 대표, 기술 전문가로 구성된 독립적인 윤리 위원회를 운영하여 발생 가능한 모든 문제를 사전에 예방하고 신속하게 대응합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 VoiceBridge AI (가칭). All Rights Reserved.</p>
+            <p class="text-sm text-gray-400 mt-2">본 문서는 사업계획서 내용을 바탕으로 제작된 인터랙티브 웹 애플리케이션입니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const marketChartData = {
+                labels: ['Straits Research (2033)', 'MarketsandMarkets (2030)', 'Grand View Research (2030)'],
+                datasets: [{
+                    label: '2024년 시장 규모 (억 달러)',
+                    data: [49, 30, 35],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }, {
+                    label: '미래 예측 규모 (억 달러)',
+                    data: [545.4, 204, 217.5],
+                    backgroundColor: 'rgba(0, 82, 204, 0.6)',
+                    borderColor: 'rgba(0, 82, 204, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            const marketChartConfig = {
+                type: 'bar',
+                data: marketChartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: false,
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y * 100000000).slice(0, -8) + '억';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '시장 규모 (억 달러)'
+                            }
+                        }
+                    }
+                }
+            };
+
+            const marketChartCtx = document.getElementById('marketChart').getContext('2d');
+            new Chart(marketChartCtx, marketChartConfig);
+
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    tabPanes.forEach(pane => {
+                        if (pane.id === button.dataset.target) {
+                            pane.classList.remove('hidden');
+                            pane.classList.add('active');
+                        } else {
+                            pane.classList.add('hidden');
+                            pane.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if(!mobileMenu.classList.contains('hidden')){
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            const sections = document.querySelectorAll('section');
+            const headerNavLinks = document.querySelectorAll('#header .nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.4
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        headerNavLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
